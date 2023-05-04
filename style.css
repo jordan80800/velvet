@@ -1,0 +1,13 @@
+
+nav{   background-image: url('assets/img/jaquettes/depositphotos_12798148-stock-photo-grunge-musical-background.webp');
+}
+h1{
+    color:  white;
+}
+#image {
+border: 2px solid black;
+}
+#image cursor{
+    width: 100px;
+    height: 100px;
+}
