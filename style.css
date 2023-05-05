@@ -5,9 +5,22 @@ h1{
     color:  white;
 }
 #image {
+    position: relative;
 border: 2px solid black;
+transition: transform 0.3s ease-in-out;
 }
-#image cursor{
-    width: 100px;
-    height: 100px;
+
+#cardd{
+    background-color: rgba(194, 153, 87, 0.74);
+    
 }
+p{
+    font-weight: bold;
+}
+
+#image:hover{
+    width: 120px;
+    height: 120px;
+    transform: scale(1.1);
+}
+
