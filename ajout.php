@@ -1,7 +1,15 @@
 <?php
 require "db.php";
 $db = connexionBase();
-
+try {
+  $requete = $db->prepare("SELECT * FROM artist");
+  $requete->execute();
+  $lesArtistes = $requete->fetchAll(PDO::FETCH_ASSOC);
+  $requete->closeCursor();
+} catch (Exception $e) {
+  echo "Erreur : " . $requete->errorInfo()[2] . "<br>";
+  die("Fin du script");
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,42 +20,52 @@ $db = connexionBase();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="style.css" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body id="body1" >
   <h1>Formulaire D'ajout</h1>
   <hr>
   <h3>Ajoutez un vinyle</h3> <br>
   <form method="post" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="Nom" class="form-label">Title</label>
-      <input type="text" placeholder="Entrez un pseudo" class="form-control" id="Nom" name="title">
+      <input type="text" placeholder="Entrez un Titre" class="form-control" id="Nom" name="title">
     </div>
 
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Artist</label>
-      <input type="text" placeholder="Enter Title" class="form-control" id="exampleInputPassword1" name="artist">
+      <select name="artist" id="artist" class="form-control">
+        <?php
+        foreach ($lesArtistes as $unArtiste) {
+        ?>
+          <option value="<?= $unArtiste['artist_id'] ?>"><?= $unArtiste['artist_name'] ?></option>
+        <?php
+        }
+        ?>
+      </select>
     </div>
 
 
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Year</label>
-      <input type="text" placeholder="queens of the Stones Age" class="form-control" id="Adresses" name="years">
+      <input type="text" placeholder="Entrer une Année" class="form-control" id="Adresses" name="years">
     </div>
 
     <div class="mb-3 ">
       <label for="exampleInputPassword1" class="form-label">Genre</label>
-      <input type="text" placeholder="Entrez un pseudo" class="form-control" id="Adresses" name="genre">
+      <input type="text" placeholder="Entrez un Genre" class="form-control" id="Adresses" name="genre">
     </div>
 
     <div class="mb-3">
       <label for="Ville" class="form-label">Label</label>
-      <input type="text" placeholder="Entrez un pseudo" class="form-control" id="Villes" aria-describedby="emailHelp" name="label">
+      <input type="text" placeholder="Entrez un Label" class="form-control" id="Villes" aria-describedby="emailHelp" name="label">
     </div>
 
-    <label for="email">Price</label><input class="imput form-control" type="text" placeholder="Entrez un pseudo" name="price" id="email"><br> <br>
+    <label for="email">Price</label><input class="imput form-control" type="text" placeholder="Entrez un Prix" name="price" id="email"><br> <br>
     <div class="row">
 
       <a>Picture</a> <br>

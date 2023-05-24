@@ -24,11 +24,13 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body id="body1">
     <form method="post">
         <div class="mb-3">
             <label for="Nom" class="form-label">Title</label>
@@ -109,12 +111,16 @@ try {
             echo "Erreur : " . $requete->errorInfo()[2] . "<br>";
             die("Fin du script");
         }
+        
 
         // Si OK: redirection vers la page artist_detail.php
         header("Location: index.php?id=" . $id);
         exit;
     }
+    
     ?>
+
+<script> https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js</script>
 </body>
 
 </html>
